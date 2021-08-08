@@ -1,6 +1,6 @@
 import './Form.scss';
 
-function Form(props, { handleApiCall }) {
+function Form({ handleApiCall }) {
 
   function handleSubmit(e) {
     e.preventDefault();
