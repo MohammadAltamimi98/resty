@@ -7,6 +7,11 @@
 ---
 <br/>
 
+## Live SandBox: https://codesandbox.io/s/resty-fjcff
+
+## PR: https://github.com/MohammadAltamimi98/resty/pull/3
+
+
 ## How to use this application:
 1. clone the repository in your terminal.
 2. navigate your way to the directory.
