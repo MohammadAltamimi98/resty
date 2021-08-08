@@ -4,10 +4,10 @@ import './app.scss';
 
 // Let's talk about using index.js and some other name in the component folder
 // There's pros and cons for each way of doing this ...
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import Form from './components/Form/Form';
-import Results from './components/Results/Results';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
+import Form from './components/form/Form';
+import Results from './components/results/Results';
 
 class App extends React.Component {
 
