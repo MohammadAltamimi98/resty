@@ -1,3 +1,5 @@
+import './Results.scss';
+
 function Results(data) {
   return (
     <section>

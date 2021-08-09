@@ -1,0 +1,15 @@
+$text:#FFFBE8;
+$background:#0304FF;
+
+
+
+  header{
+background-color: $background;
+border-bottom: 1px solid rgb(241, 241, 241);
+padding: 0;
+margin: 0;
+text-align: center;
+h1{
+  color:$text;
+}
+}

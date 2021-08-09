@@ -1,4 +1,4 @@
-$backgroundColor: #f5f5f5;
+$backgroundColor: white;
 
 html, body {
   height: 100%;
@@ -23,12 +23,12 @@ body {
     margin: 0;
   }
 
-  header {
-    background: darken($backgroundColor, 75);
-    border-bottom: 1px solid #eee;
-    color: #eee;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-  }
+  // header {
+  //   background: darken($backgroundColor, 75);
+  //   border-bottom: 1px solid #eee;
+  //   color: #eee;
+  //   padding: 0;
+  //   margin: 0;
+  //   text-align: center;
+  // }
 }
