@@ -3,7 +3,7 @@ function Header() {
     <header>
       <h1>RESTy Application</h1>
     </header>
-  )
+  );
 }
 
 export default Header;
