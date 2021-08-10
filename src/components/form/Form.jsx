@@ -41,7 +41,7 @@ function Form(props) {
   const [textArea, settextArea] = useState(false);
   const [method, setmethod] = useState('get');
   const [url, seturl] = useState('https://pokeapi.co/api/v2/pokemon');
-  const [request, setrequest] = useState('https://pokeapi.co/api/v2/pokemon');
+  const [request, setrequest] = useState('');
 
   //function to ahndle submit
   function handleSubmit(event) {
@@ -50,7 +50,7 @@ function Form(props) {
       url: url,
       method: method
     };
-    props.handleApiCall(formData); // handle props was sent from app.js as a prop 
+    props.handleApiCall(formData, request); // handle props was sent from app.js as a prop 
   }
 
   // function to handle url and update it
@@ -70,7 +70,7 @@ function Form(props) {
   }
 
 
-  function showTextArea(e) {
+  function textAreaHandler(e) {
     settextArea(!textArea); //here we set the textarea state to the negative of the initial state;
     setmethod(e.target.id);
   }
@@ -85,11 +85,11 @@ function Form(props) {
         </label>
         <label className="methods">
           <span id="get" onClick={methodHandler}>GET</span>
-          <span id="post" onClick={showTextArea}>POST</span>
-          <span id="put" onClick={showTextArea}>PUT</span>
+          <span id="post" onClick={textAreaHandler}>POST</span>
+          <span id="put" onClick={textAreaHandler}>PUT</span>
           <span id="delete" onClick={methodHandler}>DELETE</span>
         </label>
-        {showTextArea && <textArea rows='20' cols='40' onChange={requestHandler} />}
+        {textArea && <textarea rows='10' cols='25' onChange={requestHandler} />}
         {/* basically when the show text state is set to true which happens only at the put and post methods this text area will show "conditional rendering" */}
       </form>
     </>
