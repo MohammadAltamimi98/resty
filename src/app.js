@@ -21,6 +21,9 @@ class App extends React.Component {
   callApi = (requestParams) => {
     // mock output
     const data = {
+      Headers: {
+        'content-type': 'string application/json'
+      }, // In responses, a Content-Type header tells the client what the content type of the returned content actually is
       count: 2,
       results: [
         { name: 'fake thing 1', url: 'http://fakethings.com/1' },
