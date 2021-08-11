@@ -1,34 +1,34 @@
 import React from 'react';
 import './app.scss';
 
-// Let's talk about using index.js and some other name in the component folder
-// There's pros and cons for each way of doing this ...
 import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
-import Form from './components/form/Form';
 import Results from './components/results/Results';
+import Form from './components/form/Form';
 
 class App extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       data: null,
       requestParams: {},
+      loadingDisplay: false
     };
   }
 
-  callApi = (requestParams) => {
-    // mock output
+  callApi = (requestParams, requestBody) => {
     const data = {
+      headers: {
+        'content-type': 'string application/json'
+      },
       count: 2,
       results: [
         { name: 'fake thing 1', url: 'http://fakethings.com/1' },
         { name: 'fake thing 2', url: 'http://fakethings.com/2' },
       ],
     };
-    this.setState({ data, requestParams });
+    this.setState({ data, requestParams, loadingDisplay: true });
   }
+
 
   render() {
     return (
@@ -38,7 +38,6 @@ class App extends React.Component {
         <div>URL: {this.state.requestParams.url}</div>
         <Form handleApiCall={this.callApi} />
         <Results data={this.state.data} />
-        <Footer />
       </React.Fragment>
     );
   }
