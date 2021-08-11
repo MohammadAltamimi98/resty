@@ -14,12 +14,12 @@ function Form(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const formData = await axios({
+      const res = await axios({
         method: method,
         url: url,
       });
-      props.handleApiCall(formData, request);
-      console.log('formData ?', formData);
+      await props.handleApiCall(res.data, res.headers, res, request);
+      console.log('formData ?', res);
     } catch (error) {
       console.log(error.message);
     }

@@ -1,74 +1,41 @@
 import React from 'react';
 import './app.scss';
-
+import { useState, useEffect, useReducer } from 'react';
 import Header from './components/header/Header';
-// import Results from './components/results/Results';
+import Results from './components/results/Results';
 import Form from './components/form/Form';
 
 
-export default function app(props) {
+function App(props) {
+  const [headers, setHeaders] = useState();
+  const [results, setResults] = useState(['server is running']);
+  const [count, setCount] = useState();
+  const [res, setRes] = useState('');
 
-  function callApi(formData, request) {
-    console.log(formData);
-
+  function callApi(results, headers, res, request) {
+    // console.log(config, results, headers);
+    setResults(results);
+    setCount(results.length);
+    setHeaders(headers);
+    setRes(res);
+    console.log(res);
   }
+
   return (
     <div>
       <React.Fragment>
         <Header />
         <Form handleApiCall={callApi} />
-        {/* <div>Request Method: {this.state.requestParams.method}</div>
-        <div>URL: {this.state.requestParams.url}</div>
-     
-        <Results data={this.state.data} /> */}
+        {res.config === undefined ? null :
+          <><div>Request Method: {res.config.method}</div>
+            <div>URL: {res.config.url}</div></>}
+        <Results data={{ results: results, count: count, headers: headers }} />
       </React.Fragment>
 
     </div>
   );
 }
 
+export default App;
 
 
-
-
-
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       data: null,
-//       requestParams: {},
-//       loadingDisplay: false
-//     };
-//   }
-
-//   callApi = (requestParams, requestBody) => {
-//     const data = {
-//       headers: {
-//         'content-type': 'string application/json'
-//       },
-//       count: 2,
-//       results: [
-//         { name: 'fake thing 1', url: 'http://fakethings.com/1' },
-//         { name: 'fake thing 2', url: 'http://fakethings.com/2' },
-//       ],
-//     };
-//     this.setState({ data, requestParams, loadingDisplay: true });
-//     console.log(requestParams.method);
-//   }
-
-
-//   render() {
-//     return (
-//       <React.Fragment>
-//         <Header />
-//         <div>Request Method: {this.state.requestParams.method}</div>
-//         <div>URL: {this.state.requestParams.url}</div>
-//         <Form handleApiCall={this.callApi} />
-//         <Results data={this.state.data} />
-//       </React.Fragment>
-//     );
-//   }
-// }
-
-// export default App;
