@@ -15,7 +15,7 @@ function App(props) {
   function callApi(results, headers, res, request) {
     // console.log(config, results, headers);
     setResults(results);
-    setCount(results.results.length);
+    setCount(results?.results?.length);
     setHeaders(headers);
     setRes(res);
     console.log(results);
