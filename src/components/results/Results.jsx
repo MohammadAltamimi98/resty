@@ -6,14 +6,16 @@ function Results(props) {
   return (
     <>
       <section>
+        "headers:"
+        <pre> {props.data.headers ? <JSONPretty data={props.data.headers} /> : <Loading />}</pre>
 
-        <pre> {props.headers ? <JSONPretty data={props.headers} /> : <Loading />}</pre>
+        "count:"
+        <pre> {props.data.count ? <JSONPretty data={props.data.count} /> : <Loading />}</pre>
 
-        <pre> {props.count ? <JSONPretty data={props.count} /> : <Loading />}</pre>
-
-        <pre data-testid="results"> {props.data ? <JSONPretty data={props.data} /> : <Loading />}</pre>
-
+        "results"
+        <pre data-testid="results"> {props.data.results ? <JSONPretty data={props.data.results} /> : <Loading />}</pre>
       </section>
+
     </>
 
   );
