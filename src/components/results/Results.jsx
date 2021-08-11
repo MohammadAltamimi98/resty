@@ -7,7 +7,7 @@ function Results(props) {
 
     <>
       <section>
-        {props.data ? <JSONPretty data={props.data} /> : <Loading />}
+        <pre data-testid="results"> {props.data ? <JSONPretty data={props.data} /> : <Loading />}</pre>
       </section>
     </>
 
