@@ -6,7 +6,13 @@ function Results(props) {
   return (
     <>
       <section>
+
+        <pre> {props.headers ? <JSONPretty data={props.headers} /> : <Loading />}</pre>
+
+        <pre> {props.count ? <JSONPretty data={props.count} /> : <Loading />}</pre>
+
         <pre data-testid="results"> {props.data ? <JSONPretty data={props.data} /> : <Loading />}</pre>
+
       </section>
     </>
 
