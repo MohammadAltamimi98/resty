@@ -5,14 +5,19 @@ import Results from '../results/Results';
 function Main(props) {
   const [headers, setHeaders] = useState();
   const [results, setResults] = useState([]);
-  const [count, setCount] = useState();
+  const [count, setCount] = useState('');
+  const [flag, setFlag] = useState();
 
 
 
   function callApi(results, headers) {
     setResults(results);
     setHeaders(headers);
-    setCount(results?.length);
+
+    if (!results.results.length) {
+      setCount('Can not count the items due to recognition issues');
+    }
+    else { setCount(results.results?.length); }
   };
 
 

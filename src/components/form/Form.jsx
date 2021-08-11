@@ -17,8 +17,7 @@ function Form(props) {
         method: method,
         url: url
       });
-      // console.log(response);
-      props.handleApiCall(response.data?.results, response.headers);
+      props.handleApiCall(response.data, response.headers);
     } catch (error) {
       console.log(error.message);
     }

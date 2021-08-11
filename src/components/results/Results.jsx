@@ -6,22 +6,30 @@ import JSONPretty from 'react-json-pretty';
 function Results(props) {
   return (
 
-    <section>
-      <pre>
-        "headers:"
-        <JSONPretty data={props.data.headers} /></pre>
+    <>
+      <section>
+        <pre>
+          "headers:"
+          <JSONPretty data={props.data.headers} />
+        </pre>
 
-      <pre>
-        "count:"
-        <JSONPretty data={props.data.count} />
-      </pre>
 
-      <pre>
-        "results:"
-        <JSONPretty data={props.data.results} />
-      </pre>
 
-    </section>
+        <pre>
+          "count:"
+          <JSONPretty data={props.data.count} />
+        </pre>
+
+
+
+
+        < pre >
+          "results:"
+          < JSONPretty data={props.data.results} />
+        </pre>
+
+      </section>
+    </>
 
   );
 }
