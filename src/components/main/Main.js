@@ -12,7 +12,7 @@ function Main(props) {
   function callApi(results, headers) {
     setResults(results);
     setHeaders(headers);
-    setCount(results.length);
+    setCount(results?.length);
   };
 
 

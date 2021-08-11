@@ -17,7 +17,8 @@ function Form(props) {
         method: method,
         url: url
       });
-      props.handleApiCall(response.data.results, response.headers);
+      // console.log(response);
+      props.handleApiCall(response.data?.results, response.headers);
     } catch (error) {
       console.log(error.message);
     }
@@ -54,10 +55,10 @@ function Form(props) {
           <button type="submit">GO!</button>
         </label>
         <label className="methods">
-          <span id="get" onClick={methodHandler}>GET</span>
-          <span id="post" onClick={textAreaHandler}>POST</span>
-          <span id="put" onClick={textAreaHandler}>PUT</span>
-          <span id="delete" onClick={methodHandler}>DELETE</span>
+          <button id="get" onClick={methodHandler}>GET</button>
+          <button id="post" onClick={textAreaHandler}>POST</button>
+          <button id="put" onClick={textAreaHandler}>PUT</button>
+          <button id="delete" onClick={methodHandler}>DELETE</button>
         </label>
         {textArea && <textarea rows='10' cols='25' onChange={requestHandler} />}
         {/* basically when the show text state is set to true which happens only at the put and post methods this text area will show "conditional rendering" */}

@@ -5,6 +5,7 @@ import JSONPretty from 'react-json-pretty';
 
 function Results(props) {
   return (
+
     <section>
       <pre>
         "headers:"
@@ -16,11 +17,12 @@ function Results(props) {
       </pre>
 
       <pre>
-        "results"
+        "results:"
         <JSONPretty data={props.data.results} />
       </pre>
 
     </section>
+
   );
 }
 export default Results;
