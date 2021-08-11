@@ -1,6 +1,6 @@
 import './Form.scss';
 import { useState } from 'react';
-const axios = require('axios');
+
 
 function Form(props) {
   // we define the states inside the function out of any if statement or other blocks
@@ -9,19 +9,15 @@ function Form(props) {
   const [url, seturl] = useState('');
   const [request, setrequest] = useState('');
 
-  //function to ahndle submit
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      let response = await axios({
-        method: method,
-        url: url
-      });
-      props.handleApiCall(response.data, response.headers);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  //function to handle submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = {
+      method: method,
+      url: url,
+    };
+    props.handleApiCall(formData, request);
+  }
 
   // function to handle url and update it
   function urlHandler(e) {
@@ -59,7 +55,7 @@ function Form(props) {
           <button id="put" onClick={textAreaHandler}>PUT</button>
           <button id="delete" onClick={methodHandler}>DELETE</button>
         </label>
-        {textArea && <textarea rows='10' cols='25' onChange={requestHandler} />}
+        {textArea && <textarea rows='15' cols='35' onChange={requestHandler} />}
         {/* basically when the show text state is set to true which happens only at the put and post methods this text area will show "conditional rendering" */}
       </form>
     </>
