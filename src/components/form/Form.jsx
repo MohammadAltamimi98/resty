@@ -1,57 +1,27 @@
-// import './Form.scss';
-// import { useState } from 'react';
-
-// function Form({ handleApiCall }) {
-
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     const formData = {
-//       method: 'GET',
-//       url: 'https://pokeapi.co/api/v2/pokemon',
-//     };
-//     handleApiCall(formData);
-//   }
-
-//   return (
-//     <>
-//       <form onSubmit={handleSubmit}>
-//         <label >
-//           <span>URL: </span>
-//           <input name='url' type='text' />
-//           <button type="submit">GO!</button>
-//         </label>
-//         <label className="methods">
-//           <span id="get">GET</span>
-//           <span id="post">POST</span>
-//           <span id="put">PUT</span>
-//           <span id="delete">DELETE</span>
-//         </label>
-//       </form>
-//     </>
-//   );
-// }
-
-// export default Form;
-
 import './Form.scss';
 import { useState } from 'react';
+const axios = require('axios');
 
 function Form(props) {
   // we define the states inside the function out of any if statement or other blocks
   const [textArea, settextArea] = useState(false);
   const [method, setmethod] = useState('get');
-  const [url, seturl] = useState('https://pokeapi.co/api/v2/pokemon');
+  const [url, seturl] = useState('');
   const [request, setrequest] = useState('');
 
   //function to ahndle submit
-  function handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const formData = {
-      url: url,
-      method: method
-    };
-    props.handleApiCall(formData, request); // handle props was sent from app.js as a prop 
-  }
+    try {
+      let response = await axios({
+        method: method,
+        url: url
+      });
+      props.handleApiCall(response.data.results, response.headers);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   // function to handle url and update it
   function urlHandler(e) {
