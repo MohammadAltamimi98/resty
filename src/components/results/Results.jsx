@@ -1,6 +1,6 @@
 import './Results.scss';
 import '../loading/Loading';
-import Loading from '../loading/Loading';
+// import Loading from '../loading/Loading';
 import JSONPretty from 'react-json-pretty';
 
 function Results(props) {
@@ -19,7 +19,6 @@ function Results(props) {
           "count:"
           <JSONPretty data={props.data.count} />
         </pre>
-
 
 
 
