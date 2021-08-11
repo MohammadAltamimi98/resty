@@ -26,7 +26,8 @@ function Form(props) {
 
   // function to handle method and update it
   function methodHandler(e) {
-    setmethod(e.target.id); // we can use the id given for each option
+    setmethod(e.target.id);// we can use the id given for each option
+    settextArea(false);
   }
 
 
@@ -37,7 +38,7 @@ function Form(props) {
 
 
   function textAreaHandler(e) {
-    settextArea(!textArea); //here we set the textarea state to the negative of the initial state;
+    settextArea(true); //here we set the textarea state to the negative of the initial state;
     setmethod(e.target.id);
   }
 

@@ -17,14 +17,10 @@ form {
         padding: .25rem .5rem;
         background: #808080;
 
-      &:active {
+      &:active,&:hover, &:focus {
           background: red;
         }
-
-         &:hover{
-        background-color: green;
-     }
-      }
+          }
     }
   }
 }
