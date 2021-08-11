@@ -48,7 +48,7 @@ function Form(props) {
         <label >
           <span>URL: </span>
           <input name='url' type='text' onChange={urlHandler} />
-          <button type="submit" data-testid="mybtn">GO!</button>
+          <button type="submit" data-testid="my_btn">GO!</button>
         </label>
         <label className="methods">
           <button id="get" onClick={methodHandler}>GET</button>
