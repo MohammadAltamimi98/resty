@@ -1,6 +1,5 @@
 import './Form.scss';
 import { useState } from 'react';
-import axios from 'axios';
 
 
 function Form(props) {
@@ -11,19 +10,14 @@ function Form(props) {
   const [request, setrequest] = useState('');
 
   //function to handle submit
-  const handleSubmit = async (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    try {
-      const formData = await axios({
-        method: method,
-        url: url,
-      });
-      props.handleApiCall(formData, request);
-      console.log('formData ?', formData);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+    const formData = {
+      method: method,
+      url: url,
+    };
+    props.handleApiCall(formData, request);
+  }
 
   // function to handle url and update it
   function urlHandler(e) {
@@ -54,14 +48,13 @@ function Form(props) {
         <label >
           <span>URL: </span>
           <input name='url' type='text' onChange={urlHandler} />
-
           <button type="submit" data-testid="my_btn">GO!</button>
         </label>
         <label className="methods">
-          <span id="get" onClick={methodHandler}>GET</span>
-          <span id="post" onClick={textAreaHandler}>POST</span>
-          <span id="put" onClick={textAreaHandler}>PUT</span>
-          <span id="delete" onClick={methodHandler}>DELETE</span>
+          <button id="get" onClick={methodHandler}>GET</button>
+          <button id="post" onClick={textAreaHandler}>POST</button>
+          <button id="put" onClick={textAreaHandler}>PUT</button>
+          <button id="delete" onClick={methodHandler}>DELETE</button>
         </label>
         {textArea && <textarea rows='15' cols='35' onChange={requestHandler} />}
         {/* basically when the show text state is set to true which happens only at the put and post methods this text area will show "conditional rendering" */}
