@@ -2,12 +2,18 @@ $background:#D9D9D9;
 $text:#000000;
 
 section{
+
   background-color: $background;
    border:  solid 2px black;
+
+
+   h1{
+     padding-left: 15px;
+   }
   pre{
     color: $text;
     font-size: 18px;
     font-weight: bold;
-    padding-left: 10px;
+    padding-left: 20px;
      }
 }
