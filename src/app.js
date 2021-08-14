@@ -8,6 +8,12 @@ import Footer from './components/footer/Footer';
 import History from './components/history/History';
 import { PacmanLoader } from 'react-spinners';
 import axios from 'axios';
+import {
+  initialState,
+  makeHistory,
+  actionForHistory
+} from './components/historyReducer/Reducer';
+
 
 
 
@@ -15,9 +21,7 @@ function App(props) {
   const [data, setData] = useState(null);
   const [requestParams, setRequestParams] = useState({});
   // const [history, setHistory] = useState([]);
-  const initialState = {
-    history: []
-  };
+
   const [state, dispatch] = useReducer(makeHistory, initialState);
   const [showLoading, setLoading] = useState(false);
 
@@ -44,29 +48,12 @@ function App(props) {
   }, [requestParams]);
 
 
-  function makeHistory(state = initialState, action) {
-    const { type, payload } = action;
-    switch (type) {
-    case 'ADD_HISTORY':
-      const history = [...state.history, payload.history];
-      return { history };
-    default:
-      return state;
-    }
-  }
-
-  function actionForHistory(history) {
-    return {
-      type: 'ADD_HISTORY',
-      payload: { history }
-    };
-  }
 
   async function callApi(formData) {
     setLoading(true);
     if (formData.url !== '') {
       setRequestParams(formData);
-      dispatch(actionForHistory(requestParams));
+      dispatch(actionForHistory(formData));
     }
     else {
       const res = {
@@ -81,7 +68,7 @@ function App(props) {
       setData({ res });
       setRequestParams(formData);
       console.log(data);
-      dispatch(actionForHistory(requestParams));
+      dispatch(actionForHistory(formData));
     }
   }
 
