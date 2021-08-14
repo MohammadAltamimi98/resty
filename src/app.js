@@ -8,14 +8,23 @@ import Footer from './components/footer/Footer';
 import History from './components/history/History';
 import { PacmanLoader } from 'react-spinners';
 import axios from 'axios';
+import {
+  initialState,
+  makeHistory,
+  actionForHistory
+} from './components/historyReducer/Reducer';
+
 
 
 
 function App(props) {
   const [data, setData] = useState(null);
   const [requestParams, setRequestParams] = useState({});
-  const [history, setHistory] = useState([]);
+  // const [history, setHistory] = useState([]);
+
+  const [state, dispatch] = useReducer(makeHistory, initialState);
   const [showLoading, setLoading] = useState(false);
+
 
 
   useEffect(() => {
@@ -29,6 +38,7 @@ function App(props) {
           });
           setData(res);
           setLoading(false);
+          dispatch(actionForHistory(requestParams));
         }
       }
       fetchData();
@@ -38,11 +48,12 @@ function App(props) {
   }, [requestParams]);
 
 
+
   async function callApi(formData) {
     setLoading(true);
     if (formData.url !== '') {
       setRequestParams(formData);
-      setHistory([...history, formData]);
+      dispatch(actionForHistory(formData));
     }
     else {
       const res = {
@@ -57,7 +68,7 @@ function App(props) {
       setData({ res });
       setRequestParams(formData);
       console.log(data);
-      setHistory([...history, formData]);
+      dispatch(actionForHistory(formData));
     }
   }
 
@@ -68,7 +79,7 @@ function App(props) {
         <div>Request method :  {requestParams.method}</div>
         <div>URL :  {requestParams.url}</div>
         <Form handleApiCall={callApi} />
-        {history !== null && <History history={history} />}
+        {state.history !== null && <History history={state.history} />}
         {showLoading ? <PacmanLoader loading={showLoading} /> : <Results data={data} />}
         <Footer />
       </React.Fragment>
