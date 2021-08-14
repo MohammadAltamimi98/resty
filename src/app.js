@@ -14,8 +14,13 @@ import axios from 'axios';
 function App(props) {
   const [data, setData] = useState(null);
   const [requestParams, setRequestParams] = useState({});
-  const [history, setHistory] = useState([]);
+  // const [history, setHistory] = useState([]);
+  const initialState = {
+    history: []
+  };
+  const [state, dispatch] = useReducer(makeHistory, initialState);
   const [showLoading, setLoading] = useState(false);
+
 
 
   useEffect(() => {
@@ -29,6 +34,7 @@ function App(props) {
           });
           setData(res);
           setLoading(false);
+          dispatch(actionForHistory(requestParams));
         }
       }
       fetchData();
@@ -38,11 +44,29 @@ function App(props) {
   }, [requestParams]);
 
 
+  function makeHistory(state = initialState, action) {
+    const { type, payload } = action;
+    switch (type) {
+    case 'ADD_HISTORY':
+      const history = [...state.history, payload.history];
+      return { history };
+    default:
+      return state;
+    }
+  }
+
+  function actionForHistory(history) {
+    return {
+      type: 'ADD_HISTORY',
+      payload: { history }
+    };
+  }
+
   async function callApi(formData) {
     setLoading(true);
     if (formData.url !== '') {
       setRequestParams(formData);
-      setHistory([...history, formData]);
+      dispatch(actionForHistory(requestParams));
     }
     else {
       const res = {
@@ -57,7 +81,7 @@ function App(props) {
       setData({ res });
       setRequestParams(formData);
       console.log(data);
-      setHistory([...history, formData]);
+      dispatch(actionForHistory(requestParams));
     }
   }
 
@@ -68,7 +92,7 @@ function App(props) {
         <div>Request method :  {requestParams.method}</div>
         <div>URL :  {requestParams.url}</div>
         <Form handleApiCall={callApi} />
-        {history !== null && <History history={history} />}
+        {state.history !== null && <History history={state.history} />}
         {showLoading ? <PacmanLoader loading={showLoading} /> : <Results data={data} />}
         <Footer />
       </React.Fragment>

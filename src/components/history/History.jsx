@@ -1,6 +1,7 @@
 import React from 'react';
 
 function History(props) {
+  console.log(props.history);
   return (
     <div>
       <h3>History:</h3>
