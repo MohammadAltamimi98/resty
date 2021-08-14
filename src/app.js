@@ -4,32 +4,68 @@ import { useState, useEffect, useReducer } from 'react';
 import Header from './components/header/Header';
 import Results from './components/results/Results';
 import Form from './components/form/Form';
+import Footer from './components/footer/Footer';
+import History from './components/history/History';
+import { PacmanLoader } from 'react-spinners';
+import axios from 'axios';
+
 
 
 function App(props) {
-  const [headers, setHeaders] = useState();
-  const [results, setResults] = useState(['server is running']);
-  const [count, setCount] = useState();
-  const [res, setRes] = useState('');
+  const [data, setData] = useState(null);
+  const [requestParams, setRequestParams] = useState({});
+  const [history, setHistory] = useState([]);
+  const [showLoading, setLoading] = useState(false);
 
-  function callApi(results, headers, res, request) {
-    // console.log(config, results, headers);
-    setResults(results);
-    setCount(results?.results?.length);
-    setHeaders(headers);
-    setRes(res);
-    console.log(results);
+
+  useEffect(() => {
+    async function fetchData() {
+      if (requestParams.url) {
+        const res = await axios({
+          method: requestParams.method,
+          url: requestParams.url,
+        });
+        setData(res);
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, [requestParams]);
+
+
+  async function callApi(formData) {
+    setLoading(true);
+    if (formData.url) {
+      setRequestParams(formData);
+      setHistory([...history, formData]);
+    }
+    else {
+      const res = {
+        count: 2,
+        method: formData.method,
+        results: [
+          { name: 'fake thing 1', url: 'http://fakethings.com/1' },
+          { name: 'fake thing 2', url: 'http://fakethings.com/2' },
+        ],
+      };
+      setLoading(false);
+      setData({ res });
+      setRequestParams(formData);
+      setHistory([...history, formData]);
+
+    }
   }
 
   return (
     <div>
       <React.Fragment>
         <Header />
+        <div>request method: {requestParams.method}</div>
+        <div>URL: {requestParams.url}</div>
         <Form handleApiCall={callApi} />
-        {res.config === undefined ? null :
-          <><div>Request Method: {res.config.method}</div>
-            <div>URL: {res.config.url}</div></>}
-        <Results data={{ results: results, count: count, headers: headers }} />
+        {history !== null && <History history={history} />}
+        {showLoading ? <PacmanLoader loading={showLoading} /> : <Results data={data} />}
+        <Footer />
       </React.Fragment>
 
     </div>

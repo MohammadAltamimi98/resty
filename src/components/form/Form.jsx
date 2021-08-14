@@ -1,6 +1,6 @@
 import './Form.scss';
 import { useState } from 'react';
-import axios from 'axios';
+
 
 
 function Form(props) {
@@ -14,12 +14,11 @@ function Form(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios({
+      const formData = {
         method: method,
         url: url,
-      });
-      await props.handleApiCall(res.data, res.headers, res, request);
-      console.log('formData ?', res);
+      };
+      await props.handleApiCall(formData);
     } catch (error) {
       console.log(error.message);
     }
