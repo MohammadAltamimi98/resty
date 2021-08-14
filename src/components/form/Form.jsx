@@ -18,7 +18,7 @@ function Form(props) {
         method: method,
         url: url,
       };
-      await props.handleApiCall(formData);
+      await props.handleApiCall(formData, request);
     } catch (error) {
       console.log(error.message);
     }
