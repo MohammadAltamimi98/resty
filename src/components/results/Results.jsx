@@ -17,7 +17,7 @@ function Results(props) {
 
 
         <pre>
-          {props.data?.data.results && <>
+          {props.data?.data?.results && <>
             <h1>Count:</h1>
             <JSONPretty data={props.data.data.results.length} />
           </>}

@@ -19,23 +19,28 @@ function App(props) {
 
 
   useEffect(() => {
-    async function fetchData() {
-      if (requestParams.url) {
-        const res = await axios({
-          method: requestParams.method,
-          url: requestParams.url,
-        });
-        setData(res);
-        setLoading(false);
+    try {
+      async function fetchData() {
+        if (requestParams.url) {
+          console.log(requestParams.url);
+          const res = await axios({
+            method: requestParams.method,
+            url: requestParams.url,
+          });
+          setData(res);
+          setLoading(false);
+        }
       }
+      fetchData();
+    } catch (error) {
+      console.log(error.message);
     }
-    fetchData();
   }, [requestParams]);
 
 
   async function callApi(formData) {
     setLoading(true);
-    if (formData.url) {
+    if (formData.url !== "") {
       setRequestParams(formData);
       setHistory([...history, formData]);
     }
@@ -51,8 +56,8 @@ function App(props) {
       setLoading(false);
       setData({ res });
       setRequestParams(formData);
+      console.log(data);
       setHistory([...history, formData]);
-
     }
   }
 
@@ -60,8 +65,8 @@ function App(props) {
     <div>
       <React.Fragment>
         <Header />
-        <div>request method: {requestParams.method}</div>
-        <div>URL: {requestParams.url}</div>
+        <div>Request method :  {requestParams.method}</div>
+        <div>URL :  {requestParams.url}</div>
         <Form handleApiCall={callApi} />
         {history !== null && <History history={history} />}
         {showLoading ? <PacmanLoader loading={showLoading} /> : <Results data={data} />}
