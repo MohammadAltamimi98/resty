@@ -40,7 +40,7 @@ function App(props) {
 
   async function callApi(formData) {
     setLoading(true);
-    if (formData.url !== "") {
+    if (formData.url !== '') {
       setRequestParams(formData);
       setHistory([...history, formData]);
     }
