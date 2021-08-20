@@ -7,6 +7,7 @@ import Form from './components/form/Form';
 import Footer from './components/footer/Footer';
 import History from './components/history/History';
 import { PacmanLoader } from 'react-spinners';
+
 import axios from 'axios';
 import {
   initialState,
@@ -79,7 +80,7 @@ function App(props) {
         <div>Request method :  {requestParams.method}</div>
         <div>URL :  {requestParams.url}</div>
         <Form handleApiCall={callApi} />
-        {state.history !== null && <History history={state.history} />}
+        {state.history !== null && <History history={state.history} handleApiCall={callApi} />}
         {showLoading ? <PacmanLoader loading={showLoading} /> : <Results data={data} />}
         <Footer />
       </React.Fragment>
