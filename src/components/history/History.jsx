@@ -2,7 +2,8 @@ import React from 'react';
 import './History.scss';
 
 function History(props) {
-  async function fetchData(e) {
+  async function findData(e) {
+    e.preventDefault();
     console.log(e.target.textContent);
     let array = e.target.textContent.split('   ');
     array.splice(1, 1);
@@ -20,12 +21,12 @@ function History(props) {
       <h3>History:</h3>
       {props.history.map((element, index) => {
         return (
-          <span key={index} className="whatever" onClick={fetchData}>
-            {element.method.toUpperCase()}{'   ===>   '}{element.url}<br />
+          <span className="whatever">
+            <p key={index} onClick={findData}>{element.method.toUpperCase()}{'   ===>   '}{element.url}</p>  <br />
           </span>
         );
       })}
-    </div>
+    </div >
   );
 }
 
