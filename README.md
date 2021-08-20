@@ -8,7 +8,7 @@
 
 <br/>
 
-## Live SandBox: https://ip2e9.csb.app/
+## Live SandBox: https://mohammadaltamimi98.github.io/csb-71lnp/
 
 ## PR: https://github.com/MohammadAltamimi98/resty/pull/3
 
