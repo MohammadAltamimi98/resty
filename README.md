@@ -8,7 +8,7 @@
 
 <br/>
 
-## Live SandBox: https://codesandbox.io/s/resty-fjcff
+## Live SandBox: https://ip2e9.csb.app/
 
 ## PR: https://github.com/MohammadAltamimi98/resty/pull/3
 
