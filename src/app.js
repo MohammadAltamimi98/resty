@@ -7,6 +7,7 @@ import Form from './components/form/Form';
 import Footer from './components/footer/Footer';
 import History from './components/history/History';
 import { PacmanLoader } from 'react-spinners';
+
 import axios from 'axios';
 import {
   initialState,

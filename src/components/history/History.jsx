@@ -1,4 +1,5 @@
 import React from 'react';
+import './History.scss';
 
 function History(props) {
   async function fetchData(e) {
@@ -15,13 +16,13 @@ function History(props) {
   };
 
   return (
-    <div>
+    <div className="div">
       <h3>History:</h3>
       {props.history.map((element, index) => {
         return (
-          <p key={index} onClick={fetchData}>
+          <span key={index} className="whatever" onClick={fetchData}>
             {element.method.toUpperCase()}{'   ===>   '}{element.url}<br />
-          </p>
+          </span>
         );
       })}
     </div>
