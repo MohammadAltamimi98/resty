@@ -79,7 +79,7 @@ function App(props) {
         <div>Request method :  {requestParams.method}</div>
         <div>URL :  {requestParams.url}</div>
         <Form handleApiCall={callApi} />
-        {state.history !== null && <History history={state.history} />}
+        {state.history !== null && <History history={state.history} handleApiCall={callApi} />}
         {showLoading ? <PacmanLoader loading={showLoading} /> : <Results data={data} />}
         <Footer />
       </React.Fragment>
